@@ -1,3 +1,12 @@
+0.1.0
+====
+- Added: Error checking for all functions now.
+- Adddd: getWidth, getHeight, and getDimensions
+- Removed: Strings of numbers are now no longer acceptable.
+- Changed: Errors are now displated "Animation error: ..." instead of "Animation Error"
+- Fixed: Bug not allowing variation of newAnimation where second argument was number.
+- Fixed: Bug where variable 'pauseAtEnd' was being replaced with identically named function.
+
 0.0.1
 ====
 - Initial release

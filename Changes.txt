@@ -1,3 +1,10 @@
+0.2.3
+====
+- Added: merge
+- Added: set/getOnAnimationChange
+- Added: set/getOnLoop
+- Added: Alias setAnimationChange
+
 0.2.2
 ====
 - Added: Grids for duration.

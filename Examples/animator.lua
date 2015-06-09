@@ -1,9 +1,6 @@
 --[[
     To-Do: 
         - README
-        - onAnimationChange
-        - onLoop
-        - merge function (combine single tables and grids)
 --]]
 
 local unpack = table.unpack or unpack
@@ -126,6 +123,21 @@ local function decodeDelays( delays, frames )
 end
 
 return {
+    merge = function( ... )
+        local tables = { ... }
+        local final = {}
+        for i = 1, #tables do
+            local tab = tables[i]
+            if type( tab ) == 'table' then
+                for _, frame in ipairs( tab ) do
+                    table.insert( final, frame )
+                end
+            else
+                table.insert( final, tab )
+            end
+        end
+        return final
+    end, 
     newGrid = function( frameWidth, frameHeight, image, startX, startY, stopWidth, stopHeight )
         local imageWidth, imageHeight = image:getDimensions()
         startX, startY = startX or 0, startY or 0
@@ -270,6 +282,9 @@ return {
             delays = delays, 
             quadImage = quadImage, 
 
+            onAnimationChange = function() end, 
+            onLoop = function() end, 
+
             currentFrame = 1, 
             delayTimer = 0,
             looping = false, 
@@ -289,6 +304,7 @@ return {
                         if self.currentFrame > #self.frames then
                             if self.looping then 
                                 self.currentFrame = 1
+                                self:loop()
                             else
                                 if self.shouldPauseAtEnd then
                                     self.paused = true
@@ -297,6 +313,7 @@ return {
                                 end
                                 self.currentFrame = #self.frames
                             end
+                            self:onAnimationChange( self.currentFrame )
                         end
                     end
                 end
@@ -323,6 +340,16 @@ return {
                 end 
             end, 
             
+            setOnLoop = function( self, func )
+                err( 'setOnLoop: expected argument two be a function, got %type%', func, 'function' )
+                self.onLoop = func
+            end, 
+            getOnLoop = function( self ) return self.onLoop end, 
+            setOnAnimationChange = function( self, func )
+                err( 'setOnAnimationChange: expected argument two to be a function, got %type%.', func, 'function' )
+                self.onAnimationChange = func
+            end, 
+            getOnAnimationChange = function( self ) return self.onAnimationChange end, 
             setPaused = function( self, paused ) 
                 err( 'setPaused: expected argument two be a boolean, got %type%.', paused, 'boolean' )
                 self.paused = paused 
@@ -392,6 +419,7 @@ return {
             end, 
         }
         -- Aliases
+        animation.setAnimationChange = animation.setOnAnimationChange
         animation.isPaused = animation.getPaused
         animation.setFrame = animation.setCurrentFrame
         animation.gotoFrame = animation.setCurrentFrame

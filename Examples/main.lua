@@ -1,5 +1,5 @@
 local animator = require 'animator'
-local anim, anim2, anim3
+local anim, anim2, anim3, anim4
 local rotation
 
 function love.load()
@@ -21,6 +21,10 @@ function love.load()
 
     grid = animator.newGrid( 32, 32, bigQuad, 32, 32, bigQuad:getDimensions() )
     anim3 = animator.newAnimation( grid( 1,'1-3', 3,'3-1', 2,'3-1' ), { ['1, 6, 9'] = 2, 5, ['2, 4-5, 7-8'] = 1 }, bigQuad )
+
+    local grid1 = animator.newGrid( 32, 32, bigQuad, 64, 64, bigQuad:getDimensions() )
+    local grid2 = animator.newGrid( 32, 32, bigQuad, 0, 0, 64, 64 )
+    anim4 = animator.newAnimation( animator.merge( grid2( 1,1, 2,2, 2,1, 1,2 ), grid1( 2,2, 2,1, 1,2, 1,1 ) ), { ['1, 4, 5, 7'] = 1, ['2, 3, 6, 8'] = 3 }, bigQuad )
 end
 
 function love.update( dt )
@@ -29,12 +33,14 @@ function love.update( dt )
     anim:update( dt )
     anim2:update( dt )
     anim3:update( dt )
+    anim4:update( dt )
 end
 
 function love.draw()
     anim:draw( 400, 300, rotation, 1, 1, anim:getWidth() / 2, anim:getHeight() / 2 )
     anim2:draw()
     anim3:draw( 32, 32 )
+    anim4:draw( 64, 64 )
 end
 
 function love.keyreleased( key )
@@ -44,5 +50,6 @@ function love.keyreleased( key )
         anim:restart()
         anim2:restart()
         anim3:restart()
+        anim4:restart()
     end
 end

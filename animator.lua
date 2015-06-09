@@ -1,8 +1,10 @@
 --[[
     To-Do: 
-        - Make grid code cleaner and more DRY
+        - Grids for duration
         - README
         - onAnimationChange
+        - onLoop
+        - merge function (combine single tables and grids)
 --]]
 
 local unpack = table.unpack or unpack
@@ -32,6 +34,46 @@ end
 
 local function isPositive( x ) return x > 0 end
 local function isInteger( x ) return x % 1 == 0 end
+local function sign( x, y )
+    return math.abs( y - x ) / ( y - x )
+end
+
+local function validateCoordinates( self, name, index, arg, Y, X, which )
+    local numbers = {}
+    tostring( arg ):gsub( '%d+', function( x ) table.insert( numbers, tonumber( x ) ) end )
+    err( 'getFrames: ' .. name .. ' argument ' .. index .. ': too many numbers passed.', nil, 
+        function()
+            return #numbers <= 2
+        end
+    )
+
+    local start, stop = unpack( numbers )
+    if stop then -- 2 numbers passed
+        which = name
+        for i = start, stop, sign( start, stop ) do
+            if name == 'y' then
+                if not self.reference[i] then return false end
+            elseif name == 'x' then
+                if not self.reference[Y][i] then return false end
+            end
+        end
+    else 
+        local i = tonumber( start )
+        if name == 'y' then 
+            if not self.reference[i] then return false end
+        elseif name == 'x' then
+            if which then -- which is set to y
+                local y = tonumber( Y:match( '%d+' ) )
+                return self.reference[y][i], which, start, stop
+            else
+                local y = tonumber( Y )
+                return self.reference[y][i], which, start, stop
+            end
+        end
+    end
+
+    return true, which, start, stop
+end
 
 return {
     newGrid = function( frameWidth, frameHeight, image, startX, startY, stopWidth, stopHeight )
@@ -61,66 +103,34 @@ return {
                         end
                     )
 
-                    local which, start, stop = nil, nil, nil
-                    err( 'getFrames: expected y argument ' .. i .. ' to be valid coordinate(s) of grid.', arg2, 
-                        function( arg )
-                            local numbers = {}
-                            tostring( arg ):gsub( '(%d+)', function( y ) table.insert( numbers, tonumber( y ) ) end )
-                            err( 'getFrames: y argument ' .. i .. ': too many numbers passed.', nil, 
-                                function()
-                                    return #numbers <= 2
-                                end
-                            ) 
-                            local Start, Stop = unpack( numbers )
-                            if Stop then 
-                                which, start, stop = 'y', unpack( numbers )
-                                for y = start, stop, math.abs( stop - start ) / ( stop - start ) do
-                                    if not self.reference[y] then return false end
-                                end
-                            else
-                                local y = tonumber( Start )
-                                return self.reference[y]
-                            end
-                            return true
+                    local which, start, stop
+                    err( 'getFrames: expected y argument ' .. i + 1 .. ' to be valid coordinate(s) of grid.', arg2, 
+                        function( y )
+                            local passed
+                            passed, which, start, stop = validateCoordinates( self, 'y', i + 1, y, y, arg1 )
+                            return passed
                         end
                     )
                     err( 'getFrames: expected x argument ' .. i .. ' to be valid coordinate(s) of grid.', arg1, 
-                        function( arg )
-                            local numbers = {}
-                            tostring( arg ):gsub( '(%d+)', function( x ) table.insert( numbers, tonumber( x ) ) end )
-                             err( 'getFrames: y argument ' .. i .. ': too many numbers passed.', nil, 
-                                function()
-                                    return #numbers <= 2
-                                end
-                            )
-                            local Start, Stop = unpack( numbers )
-                            if Stop then 
-                                which, start, stop = 'x', Start, Stop
-                                for x = start, stop, math.abs( stop - start ) / ( stop - start ) do
-                                    if not self.reference[arg2][x] then return false end
-                                end
-                            else
-                                local x = tonumber( Start )
-                                if which then -- which is set to y
-                                    local y = tonumber( arg2:match( '%d' ) )
-                                    return self.reference[y][x]
-                                else
-                                    local y = tonumber( arg2 )
-                                    return self.reference[y][x]
-                                end
+                        function( x )
+                            local results = { validateCoordinates( self, 'x', i, x, arg2, x, which ) }
+                            if not which then
+                                local _
+                                _, which, start, stop = unpack( results )
                             end
-                            return true
-                        end 
+                            return results[1]
+                        end
                     )
+
                     if which then
                         if which == 'x' then
                             local y = tonumber( arg2 )
-                            for x = start, stop, math.abs( stop - start ) / ( stop - start ) do
+                            for x = start, stop, sign( start, stop ) do
                                 table.insert( returns, self.reference[y][x] )
                             end
                         else -- which == y
                             local x = tonumber( arg1 )
-                            for y = start, stop, math.abs( stop - start ) / ( stop - start ) do
+                            for y = start, stop, sign( start, stop ) do
                                 table.insert( returns, self.reference[y][x] )
                             end
                         end
@@ -132,14 +142,13 @@ return {
                 return returns
             end, 
         }
-        local x, y = 0, 0
+
         for y = startY, stopY - 1, frameHeight do
             local Y = ( y - startY ) / frameHeight + 1
             frames.reference[Y] = {}
             for x = startX, stopX - 1, frameWidth do
-                local frame = love.graphics.newQuad( x, y, frameWidth, frameHeight, imageWidth, imageHeight )  
-                table.insert( frames, frame )
                 local X = ( x - startX ) / frameWidth + 1
+                local frame = love.graphics.newQuad( x, y, frameWidth, frameHeight, imageWidth, imageHeight )  
                 frames.reference[Y][X] = frame
             end
         end

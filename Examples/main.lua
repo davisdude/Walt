@@ -1,5 +1,6 @@
 local animator = require 'animator'
-local anim, rotation
+local anim, anim2, anim3
+local rotation
 
 function love.load()
     love.graphics.setDefaultFilter( 'nearest', 'nearest' )
@@ -24,6 +25,7 @@ end
 
 function love.update( dt )
     rotation = rotation + dt
+
     anim:update( dt )
     anim2:update( dt )
     anim3:update( dt )
@@ -40,5 +42,7 @@ function love.keyreleased( key )
         love.event.quit()
     else 
         anim:restart()
+        anim2:restart()
+        anim3:restart()
     end
 end

@@ -1,3 +1,10 @@
+0.2.0
+====
+- Added: newGrid
+- Fixed: Bug where one-variable delays were still not working correctly.
+- Changed: update now checks dt for positive values.
+- Changed: setCurrentFrame now checks for positive values.
+
 0.1.0
 ====
 - Added: Error checking for all functions now.

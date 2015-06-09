@@ -20,7 +20,7 @@ function love.load()
     anim2:setLooping( true )
 
     grid = animator.newGrid( 32, 32, bigQuad, 32, 32, bigQuad:getDimensions() )
-    anim3 = animator.newAnimation( grid( 1,'1-3', 3,'3-1', 2,'3-1' ), 1, bigQuad )
+    anim3 = animator.newAnimation( grid( 1,'1-3', 3,'3-1', 2,'3-1' ), { ['1, 6, 9'] = 2, 5, ['2, 4-5, 7-8'] = 1 }, bigQuad )
 end
 
 function love.update( dt )

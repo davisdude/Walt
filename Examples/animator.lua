@@ -1,6 +1,5 @@
 --[[
     To-Do: 
-        - Grids for duration
         - README
         - onAnimationChange
         - onLoop
@@ -73,6 +72,57 @@ local function validateCoordinates( self, name, index, arg, Y, X, which )
     end
 
     return true, which, start, stop
+end
+
+local function decodeDelays( delays, frames )
+    if type( delays ) == 'number' then 
+        local delay = delays
+        local delays = {}
+        for i = 1, frames do
+            delays[i] = delay
+        end
+        return delays
+    else
+        local ret = {}
+        local unassigned = {}
+        for _, v in ipairs( delays ) do
+            table.insert( unassigned, v )
+        end
+        for i, v in pairs( delays ) do
+            if type( i ) == 'string' then 
+                local groups = {}
+                i:gsub( '(%d+)%s*%-?%s*(%d*)', function( x, y ) table.insert( groups, { x, y } ) end )
+                for _, group in ipairs( groups ) do
+                    if #group[2] > 0 then -- Second capture isn't blank
+                        local start, stop = unpack( group )
+                        err( 'newAnimation: delays with ranges should be arranged from smallest to largest, i.e. [1-3], not [3-1].', nil, function() return start < stop end )
+                        for frame = start, stop do
+                            err( 'newAnimation: there should only be one value for each delay!', nil, function() return not ret[frame] end )
+                            frame = tonumber( frame )
+                            ret[frame] = v
+                        end
+                    else
+                        local frame = group[1]
+                        err( 'newAnimation: there should only be one value for each delay!', nil, function() return not ret[frame] end )
+                        frame = tonumber( frame )
+                        ret[frame] = v
+                    end
+                end
+            end
+        end
+        for i = 1, #unassigned do
+            local index = 0
+            for ii = 1, #ret do
+                if ret[ii] == nil then
+                    index = ii
+                    break
+                end
+            end
+            if ( index == 0 ) or ( index == #ret and #ret > 0 ) then index = #ret + 1 end
+            ret[index] = unassigned[i]
+        end
+        return ret
+    end
 end
 
 return {
@@ -155,6 +205,7 @@ return {
 
         return setmetatable( frames, { __call = frames.getFrames } )
     end, 
+
     newAnimation = function( frames, delays, quadImage )
         err( 'newAnimation: expected argument 1 to be a table, got %type%.', frames, 'table' )
         err( 'newAnimation: expected argument 2 to be a table or a number, got %type%.', delays, 'table', 'number' )
@@ -198,28 +249,22 @@ return {
                 end 
             )
         end
-        if type( delays ) == 'table' then 
-            err( 'newAnimation: argument 2 should have the same number of entries as argument 1.', delays, 
-                function( delays )
-                    return #delays == #frames
-                end
-            )
-            err( 'newAnimation: expected argument 2 to be a table of numbers or a single number.', delays, 
-                function( delays )
-                    for index, delay in ipairs( delays ) do
-                        if type( delay ) ~= 'number' then return false end
-                    end
-                    return true
-                end
-            )
-        else
-            local delay = delays
-            delays = {}
-            for i = 1, #frames do
-                delays[i] = delay
-            end
-        end
 
+        delays = decodeDelays( delays, #frames )
+        err( 'newAnimation: argument 2 should have the same number of entries as argument 1.', delays, 
+            function( delays )
+                return #delays == #frames
+            end
+        )
+        err( 'newAnimation: expected argument 2 to be a table of numbers or a single number.', delays, 
+            function( delays )
+                for index, delay in ipairs( delays ) do
+                    if type( delay ) ~= 'number' then return false end
+                end
+                return true
+            end
+        )
+        
         local animation = {
             frames = frames, 
             delays = delays, 

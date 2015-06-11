@@ -304,7 +304,7 @@ return {
                         if self.currentFrame > #self.frames then
                             if self.looping then 
                                 self.currentFrame = 1
-                                self:loop()
+                                self:onLoop()
                             else
                                 if self.shouldPauseAtEnd then
                                     self.paused = true

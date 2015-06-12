@@ -1,3 +1,7 @@
+0.2.5
+====
+- Fixed: onAnimationChange is now called on change, not loop. 
+
 0.2.4
 ====
 - Added: Beginning of README

@@ -1,6 +1,7 @@
 --[[
     To-Do: 
         - README
+        - Padding for grids
 --]]
 
 local unpack = table.unpack or unpack
@@ -138,7 +139,7 @@ return {
         end
         return final
     end, 
-    newGrid = function( frameWidth, frameHeight, image, startX, startY, stopWidth, stopHeight )
+    newGrid = function( frameWidth, frameHeight, image, startX, startY, stopX, stopY )
         local imageWidth, imageHeight = image:getDimensions()
         startX, startY = startX or 0, startY or 0
         stopX, stopY = stopX or imageWidth, stopY or imageHeight
@@ -301,6 +302,7 @@ return {
                     if self.delayTimer > self.delays[self.currentFrame] then
                         self.delayTimer = 0
                         self.currentFrame = self.currentFrame + 1
+                        self:onAnimationChange( self.currentFrame )
                         if self.currentFrame > #self.frames then
                             if self.looping then 
                                 self.currentFrame = 1
@@ -313,7 +315,6 @@ return {
                                 end
                                 self.currentFrame = #self.frames
                             end
-                            self:onAnimationChange( self.currentFrame )
                         end
                     end
                 end

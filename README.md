@@ -74,7 +74,7 @@ And that's it!
 - Returns:
 	- `frames`: Table. A flattened list of the quads and images. 
 - Notes: 
-    - Works well in combination with `[animator.newAnimation](#animatornewanimation)`.
+    - Works well in combination with [`animator.newAnimation`](#animatornewanimation).
 
 ###animator.newAnimation
 - Creates a new animation object. 
@@ -115,7 +115,7 @@ And that's it!
 - Synopsis:
     - `active = anim:getActive()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `active`: Boolean. Whether the animation is playing or not. 
 
@@ -124,7 +124,7 @@ And that's it!
 - Synopsis:
     - `frame = anim:getCurrentFrame()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `frame`: Number. The number frame that the animation is on.
 
@@ -133,7 +133,7 @@ And that's it!
 - Synopsis: 
     - `width, height = anim:getDimensions()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `width`: Number. The width of the current frame. 
 	- `height`: Number. THe height of the current frame.
@@ -143,7 +143,7 @@ And that's it!
 - Synopsis:
     - `height = anim:getHeight()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `height`: Number. The height of the current frame.
 
@@ -152,7 +152,7 @@ And that's it!
 - Synopsis:
     - `isLooping = anim:getLooping()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `isLooping`: Boolean. Whether the animation is looping or not. 
 
@@ -161,7 +161,7 @@ And that's it!
 - Synopsis:
     - `func = anim:getOnAnimationChange()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `func`: Function. The function called on frame-change.
 
@@ -170,7 +170,7 @@ And that's it!
 - Synopsis:
     - `func = anim:getOnLoop()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `func`: Function. The function called on-loop. 
 
@@ -179,7 +179,7 @@ And that's it!
 - Synopsis:
     - `shouldPause = anim:getPauseAtEnd()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `shouldPause`: Boolean. Whether the animation will pause at the end or not. 
 
@@ -188,7 +188,7 @@ And that's it!
 - Synopsis:
     - `isPaused = anim:getPaused()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `isPaused`: Boolean. Whether the animation is paused or not.
 
@@ -197,7 +197,7 @@ And that's it!
 - Synopsis:
     - `width = anim:getWidth()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
 	- `width`: Number. The width of the frame. 
 
@@ -206,7 +206,7 @@ And that's it!
 - Synopsis:
     - `anim:pause()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
     - Nothing. 
 
@@ -215,7 +215,7 @@ And that's it!
 - Synopsis:
     - `anim:pauseAtEnd()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
     - Nothing. 
 
@@ -224,7 +224,7 @@ And that's it!
 - Synopsis:
     - `anim:restart()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
     - Nothing. 
 
@@ -233,7 +233,7 @@ And that's it!
 - Synopsis:
     - `anim:resume()`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 - Returns:
     - Nothing. 
 
@@ -242,7 +242,7 @@ And that's it!
 - Synopsis:
     - `anim:setActive( active )`
 - Arguments:
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
     - `active`: Boolean. Whether the animation should be playing (`true`) or not (`false`).
 - Returns:
     - Nothing. 
@@ -252,7 +252,7 @@ And that's it!
 - Synopsis:
     - `anim:setCurrentFrame( frame )`
 - Arguments: 
-    - `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`.
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
 	- `frame`: Number. The frame to be set. 
 - Returns:
     - Nothing. 
@@ -262,7 +262,7 @@ And that's it!
 - Synopsis:
     - `anim:setLooping( loop )`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 	- `loop`: Boolean. Whether the animation should loop at the end or not. 
 - Returns:
     - Nothing. 
@@ -272,7 +272,7 @@ And that's it!
 - Synopsis:
     - `anim:setOnAnimationChange( func )`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 	- `func`: Function. The function to be called on each animation increment. 
 - Returns: 
 	- Nothing
@@ -282,7 +282,7 @@ And that's it!
 - Synopsis:
     - `anim:setOnLoop( func )`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 	- `func`: Function. The function to be called on each loop. 
 - Returns:
 	- Nothing.
@@ -292,7 +292,7 @@ And that's it!
 - Synopsis:
     - `anim:setPauseAtEnd( shouldPause )`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
     - `shouldPause`: Boolean. Whether or not the function should pause after displaying the final frame. 
 - Returns:
 	- Nothing.
@@ -302,7 +302,7 @@ And that's it!
 - Synopsis:
     - `anim:setPaused( isPaused )`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 	- `isPaused`: Boolean. Whether the animation should be paused or not.
 - Returns:
 	- Nothing.
@@ -312,7 +312,7 @@ And that's it!
 - Synopsis:
     - `anim:togglePause()`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 - Returns:
 	- Nothing.
 
@@ -321,7 +321,7 @@ And that's it!
 - Synopsis:
     - `anim:toggleActive()`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 - Returns:
 	- Nothing.
 
@@ -330,7 +330,7 @@ And that's it!
 - Synopsis:
     - `anim:toggleLooping()`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 - Returns:
 	- Nothing.
 
@@ -339,7 +339,7 @@ And that's it!
 - Synopsis:
     - `anim:togglePauseAtEnd()`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 - Returns:
 	- Nothing.
 
@@ -348,7 +348,7 @@ And that's it!
 - Synopsis:
     - `anim:update( dt )`
 - Arguments:
-	- `anim`: Table. An animation object returned from `[animator.newAnimation](#animatornewanimation)`. 
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 	- `dt`: Number. The time between each update-frame. 
 - Returns:
 	- Nothing.
@@ -373,7 +373,7 @@ And that's it!
 - Synopsis:
     - `frames = grid:getFrames()`
 - Arguments:
-	- `grid`: Table. A grid object retured by `[animator:newGrid](#animatornewgrid)`. See the picture below to get a better idea of how they work.
+	- `grid`: Table. A grid object retured by [`animator:newGrid`](#animatornewgrid). See the picture below to get a better idea of how they work.
 - Returns:
 	- `frames`: 
 

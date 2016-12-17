@@ -10,6 +10,7 @@ function love.load()
     local two = love.graphics.newQuad( 0, 0, 32, 32, 64, 32 )
     local four = love.graphics.newQuad( 32, 0, 32, 32, 64, 32 )
 
+	-- newAnimation( frames, times, [quadImage] )
     anim = animator.newAnimation( { one, two, three, four }, { 1, 1, 1, 1 }, quadImage )
     anim:setLooping()
     rotation = 0

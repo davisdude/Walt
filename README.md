@@ -40,11 +40,10 @@ An animation library for LÖVE.
     - [animator.newGrid](#animatornewgrid)
         - [grid:getFrames](#gridgetframes)
 - [Examples](#examples)
-- [License](#license)
 
 ##Usage
 ```Lua
-local animator = require 'Path.to.walt'
+local animator = require 'path.to.walt'
 
 function love.load()
     local image = love.graphics.newImage( 'Path/to/image.png' )
@@ -98,7 +97,7 @@ And that's it!
 - Notes: 
     - The quads should all be from the same image. 
     - After all of the `Key`s and `List`s are inserted, the unassigned keys are done in the order of the `flat` entries.
-        - `{ ['1 - 3'] = .5, ['6 - 10'] = 1, .2, .3, .4 }` = `{ .5, .5, .5, .2, .3, .4, 1, 1, 1, 1, 1 }`
+        - `{ ['1 - 3'] = .5, ['6 - 10'] = 1, .2, .3, .4 }` = `{ .5, .5, .5, .2, .3, 1, 1, 1, 1, 1, .4 }`
 
 ####anim:draw
 - Draw the animation. 
@@ -375,13 +374,13 @@ And that's it!
 - Arguments:
 	- `grid`: Table. A grid object retured by [`animator:newGrid`](#animatornewgrid). See the picture below to get a better idea of how they work.
 - Returns:
-	- `frames`: 
+	- `frames`: Table. A table containing the quads created from the grid. 
 
 - Each pair of numbers is a pair of x and y coordinates, referring to the grid. 
     - Use plain numbers to refer to single simple x and y coordinates. 
     - Use a string with numbers seperated by a hyphen (`-`) to represent _"through"_. 
     - In a pairs, both arguments can't be strings.
-- So if you made a grid like this (assuming the image is called `'grid.png'`):
+- So you would make a grid like this (assuming the image is called `'grid.png'`):
 
 ![Grid](Images/Grid.png)
 
@@ -409,19 +408,3 @@ local anim = animator.newAnimation( grid.getFrames( 1,1  2,1  3,1  '4 - 7',1,  8
 
 ##Examples
 See [Examples](https://github.com/davisdude/Walt/tree/master/Examples/).
-
-##License
-An animation library for LÖVE
-Copyright (C) 2015 Davis Claiborne
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-Contact me at davisclaib at gmail.com

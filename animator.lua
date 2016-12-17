@@ -1,7 +1,30 @@
+-- https://github.com/davisdude/Walt
 --[[
-    To-Do: 
-        - README
+Copyright (c) 2016 Davis Claiborne
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+]]
+--[[
+	TODO:
         - Padding for grids
+		- Usually sized images
 --]]
 
 local unpack = table.unpack or unpack
@@ -371,7 +394,7 @@ return {
                 self.active = active 
             end, 
             getActive = function( self ) return self.active end,
-            toggleactive = function( self ) self.active = not self.active end, 
+            toggleActive = function( self ) self.active = not self.active end, 
             setLooping = function( self, looping ) 
                 looping = looping or true
                 err( 'setLooping: expected argument two to be a boolean, got %type%.', looping, 'boolean' )

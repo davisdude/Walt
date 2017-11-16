@@ -3,7 +3,8 @@ Walt
 
 An animation library for LÖVE.
 
-#Table of Contents
+# Table of Contents
+
 - [Usage](#usage)
 - [Name](#name)
 - [Functions](#functions)
@@ -41,7 +42,8 @@ An animation library for LÖVE.
         - [grid:getFrames](#gridgetframes)
 - [Examples](#examples)
 
-##Usage
+## Usage
+
 ```Lua
 local animator = require 'path.to.walt'
 
@@ -60,11 +62,14 @@ end
 ```
 And that's it!
 
-##Name
+## Name
+
 - Walt is named for famous animator Walt Disney.
 
-##Functions
-###animator.merge
+## Functions
+
+### animator.merge
+
 - Combine several tables into one compact table.
 - Synopsis:
     - `frames = animator.merge( ... )`
@@ -75,7 +80,8 @@ And that's it!
 - Notes: 
     - Works well in combination with [`animator.newAnimation`](#animatornewanimation).
 
-###animator.newAnimation
+### animator.newAnimation
+
 - Creates a new animation object. 
 - Synopsis:
     - `anim = animator.newAnimation( frames, duration, [quadImage] )`
@@ -99,7 +105,8 @@ And that's it!
     - After all of the `Key`s and `List`s are inserted, the unassigned keys are done in the order of the `flat` entries.
         - `{ ['1 - 3'] = .5, ['6 - 10'] = 1, .2, .3, .4 }` = `{ .5, .5, .5, .2, .3, 1, 1, 1, 1, 1, .4 }`
 
-####anim:draw
+#### anim:draw
+
 - Draw the animation. 
 - Synopsis:
     - `anim:draw()`
@@ -109,7 +116,8 @@ And that's it!
 - Notes: 
     - You have to call `[anim:update](#animupdate)` as well.
 
-####anim:getActive
+#### anim:getActive
+
 - Returns if the animation is currently playing.
 - Synopsis:
     - `active = anim:getActive()`
@@ -118,7 +126,8 @@ And that's it!
 - Returns:
 	- `active`: Boolean. Whether the animation is playing or not. 
 
-####anim:getCurrentFrame
+#### anim:getCurrentFrame
+
 - Gets the current frame number.
 - Synopsis:
     - `frame = anim:getCurrentFrame()`
@@ -127,7 +136,8 @@ And that's it!
 - Returns:
 	- `frame`: Number. The number frame that the animation is on.
 
-####anim:getDimensions
+#### anim:getDimensions
+
 - Gets the width and height of the current frame of the animation.
 - Synopsis: 
     - `width, height = anim:getDimensions()`
@@ -137,7 +147,8 @@ And that's it!
 	- `width`: Number. The width of the current frame. 
 	- `height`: Number. THe height of the current frame.
 
-####anim:getHeight
+#### anim:getHeight
+
 - Gets the height of the current frame of the animation. 
 - Synopsis:
     - `height = anim:getHeight()`
@@ -146,7 +157,8 @@ And that's it!
 - Returns:
 	- `height`: Number. The height of the current frame.
 
-####anim:getLooping
+#### anim:getLooping
+
 - Gets whether the animation is a looping animation or not. 
 - Synopsis:
     - `isLooping = anim:getLooping()`
@@ -155,7 +167,8 @@ And that's it!
 - Returns:
 	- `isLooping`: Boolean. Whether the animation is looping or not. 
 
-####anim:getOnAnimationChange
+#### anim:getOnAnimationChange
+
 - Gets the function called on frame-change.
 - Synopsis:
     - `func = anim:getOnAnimationChange()`
@@ -164,7 +177,8 @@ And that's it!
 - Returns:
 	- `func`: Function. The function called on frame-change.
 
-####anim:getOnLoop
+#### anim:getOnLoop
+
 - Gets the function called on-loop. 
 - Synopsis:
     - `func = anim:getOnLoop()`
@@ -173,7 +187,8 @@ And that's it!
 - Returns:
 	- `func`: Function. The function called on-loop. 
 
-####anim:getPauseAtEnd
+#### anim:getPauseAtEnd
+
 - Gets whether the animation should pause on the last frame. 
 - Synopsis:
     - `shouldPause = anim:getPauseAtEnd()`
@@ -182,7 +197,8 @@ And that's it!
 - Returns:
 	- `shouldPause`: Boolean. Whether the animation will pause at the end or not. 
 
-####anim:getPaused
+#### anim:getPaused
+
 - Gets whether the animation is paused or not. 
 - Synopsis:
     - `isPaused = anim:getPaused()`
@@ -191,7 +207,8 @@ And that's it!
 - Returns:
 	- `isPaused`: Boolean. Whether the animation is paused or not.
 
-####anim:getWidth
+#### anim:getWidth
+
 - Gets the width of the current frame of the animation. 
 - Synopsis:
     - `width = anim:getWidth()`
@@ -200,7 +217,8 @@ And that's it!
 - Returns:
 	- `width`: Number. The width of the frame. 
 
-####anim:pause
+#### anim:pause
+
 - Pauses the animation. 
 - Synopsis:
     - `anim:pause()`
@@ -209,7 +227,8 @@ And that's it!
 - Returns:
     - Nothing. 
 
-####anim:pauseAtEnd
+#### anim:pauseAtEnd
+
 - Sets the function to pause after the last frame has played. 
 - Synopsis:
     - `anim:pauseAtEnd()`
@@ -218,7 +237,8 @@ And that's it!
 - Returns:
     - Nothing. 
 
-####anim:restart
+#### anim:restart
+
 - Resets the animation to the first frame.
 - Synopsis:
     - `anim:restart()`
@@ -227,7 +247,8 @@ And that's it!
 - Returns:
     - Nothing. 
 
-####anim:resume
+#### anim:resume
+
 - Resumes the animation from a pause. 
 - Synopsis:
     - `anim:resume()`
@@ -236,7 +257,8 @@ And that's it!
 - Returns:
     - Nothing. 
 
-####anim:setActive
+#### anim:setActive
+
 - Stops or resumes the animation. 
 - Synopsis:
     - `anim:setActive( active )`
@@ -246,7 +268,8 @@ And that's it!
 - Returns:
     - Nothing. 
 
-####anim:setCurrentFrame
+#### anim:setCurrentFrame
+
 - Sets the current frame of the animation. 
 - Synopsis:
     - `anim:setCurrentFrame( frame )`
@@ -256,7 +279,8 @@ And that's it!
 - Returns:
     - Nothing. 
 
-####anim:setLooping
+#### anim:setLooping
+
 - Sets whether the animation should loop at the end or not. 
 - Synopsis:
     - `anim:setLooping( loop )`
@@ -266,7 +290,8 @@ And that's it!
 - Returns:
     - Nothing. 
 
-####anim:setOnAnimationChange
+#### anim:setOnAnimationChange
+
 - Sets the function executed on animation change. 
 - Synopsis:
     - `anim:setOnAnimationChange( func )`
@@ -276,7 +301,8 @@ And that's it!
 - Returns: 
 	- Nothing
 
-####anim:setOnLoop
+#### anim:setOnLoop
+
 - Sets the function executed on loop. 
 - Synopsis:
     - `anim:setOnLoop( func )`
@@ -286,7 +312,8 @@ And that's it!
 - Returns:
 	- Nothing.
 
-####anim:setPauseAtEnd
+#### anim:setPauseAtEnd
+
 - Sets the animation to pause after displaying the final frame. 
 - Synopsis:
     - `anim:setPauseAtEnd( shouldPause )`
@@ -296,7 +323,8 @@ And that's it!
 - Returns:
 	- Nothing.
 
-####anim:setPaused
+#### anim:setPaused
+
 - Sets if the animation is paused or not. 
 - Synopsis:
     - `anim:setPaused( isPaused )`
@@ -306,7 +334,8 @@ And that's it!
 - Returns:
 	- Nothing.
 
-####anim:togglePause
+#### anim:togglePause
+
 - Toggles the pause of the animation. 
 - Synopsis:
     - `anim:togglePause()`
@@ -315,7 +344,8 @@ And that's it!
 - Returns:
 	- Nothing.
 
-####anim:toggleActive
+#### anim:toggleActive
+
 - Toggles whether the animation is active or not. 
 - Synopsis:
     - `anim:toggleActive()`
@@ -324,7 +354,8 @@ And that's it!
 - Returns:
 	- Nothing.
 
-####anim:toggleLooping
+#### anim:toggleLooping
+
 - Toggles whether the animation is looping or not. 
 - Synopsis:
     - `anim:toggleLooping()`
@@ -333,7 +364,8 @@ And that's it!
 - Returns:
 	- Nothing.
 
-####anim:togglePauseAtEnd
+#### anim:togglePauseAtEnd
+
 - Toggles whether the animation pauses after playing the last frame. 
 - Synopsis:
     - `anim:togglePauseAtEnd()`
@@ -342,7 +374,8 @@ And that's it!
 - Returns:
 	- Nothing.
 
-####anim:update
+#### anim:update
+
 - Update the animation. 
 - Synopsis:
     - `anim:update( dt )`
@@ -352,7 +385,8 @@ And that's it!
 - Returns:
 	- Nothing.
 
-###animator.newGrid
+### animator.newGrid
+
 - Creates a new grid to make animation easier. 
 - Synopsis:
     - `grid = animator.newGrid( frameWidth, frameHeight, image, [startX, startY, stopX, stopY] )`
@@ -367,7 +401,8 @@ And that's it!
 - Returns:
 	- `grid`: Table. A table of quads. 
 
-####grid:getFrames
+#### grid:getFrames
+
 - Returns the quads in the specified order you create it. 
 - Synopsis:
     - `frames = grid:getFrames()`
@@ -391,7 +426,8 @@ local anim = animator.newAnimation( grid.getFrames( 1,1  2,1  3,1  '4 - 7',1,  8
 -- You have to remember to pass the image that the quads are from. 
 ```
 
-###Alisases
+### Alisases
+
 - There functions are also available, and work just like their conterpart.
 
 | Alias		    	        | Corresponding Function	        	                    |
@@ -406,5 +442,6 @@ local anim = animator.newAnimation( grid.getFrames( 1,1  2,1  3,1  '4 - 7',1,  8
 | grid:__call               | [grid:getFrames](#gridgetframes)                          |
 
 
-##Examples
+## Examples
+
 See [Examples](https://github.com/davisdude/Walt/tree/master/Examples/).

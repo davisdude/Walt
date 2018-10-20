@@ -1,13 +1,8 @@
-Walt
-====
-
-
 Fork notes:
 - added animation end event
 
-
-
-
+Walt
+====
 
 An animation library for LÖVE.
 

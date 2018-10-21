@@ -1,3 +1,6 @@
+Fork notes:
+- added animation end event
+
 Walt
 ====
 
@@ -17,6 +20,7 @@ An animation library for LÖVE.
         - [anim:getHeight](#animgetheight)
         - [anim:getLooping](#animgetlooping)
         - [anim:getOnAnimationChange](#animgetonanimationchange)
+        - [anim:getOnAnimationEnd](#animgetonanimationend)
         - [anim:getOnLoop](#animgetonloop)
         - [anim:getPauseAtEnd](#animgetpauseatend)
         - [anim:getPaused](#animgetpaused)
@@ -29,6 +33,7 @@ An animation library for LÖVE.
         - [anim:setCurrentFrame](#animsetcurrentframe)
         - [anim:setLooping](#animsetlooping)
         - [anim:setOnAnimationChange](#animsetonanimationchange)
+        - [anim:setOnAnimationEnd](#animsetonanimationend)
         - [anim:setOnLoop](#animsetonloop)
         - [anim:setPauseAtEnd](#animsetpauseatend)
         - [anim:setPaused](#animsetpaused)
@@ -177,6 +182,17 @@ And that's it!
 - Returns:
 	- `func`: Function. The function called on frame-change.
 
+#### anim:getOnAnimationEnd
+
+- Gets the function called on animation end.
+- Synopsis:
+    - `func = anim:getOnAnimationEnd()`
+- Arguments:
+    - `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation).
+- Returns:
+	- `func`: Function. The function called on animation end.
+
+
 #### anim:getOnLoop
 
 - Gets the function called on-loop. 
@@ -298,6 +314,17 @@ And that's it!
 - Arguments:
 	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
 	- `func`: Function. The function to be called on each animation increment. 
+- Returns: 
+	- Nothing
+
+#### anim:setOnAnimationEnd
+
+- Sets the function executed on animation end. 
+- Synopsis:
+    - `anim:setOnAnimationEnd( func )`
+- Arguments:
+	- `anim`: Table. An animation object returned from [`animator.newAnimation`](#animatornewanimation). 
+	- `func`: Function. The function to be called on each animation end. 
 - Returns: 
 	- Nothing
 
@@ -438,6 +465,7 @@ local anim = animator.newAnimation( grid.getFrames( 1,1  2,1  3,1  '4 - 7',1,  8
 | anim:getFrame 	        | [anim:getGetCurrentFrame](#animgetcurrentframe)		    |
 | anim:gotoFrame            | [anim:setCurrentFrame](#animsetcurrentframe)              |
 | anim:setAnimationChange   | [anim:setOnAnimationChange](#animsetonanimationchange)    |
+| anim:setAnimationEnd      | [anim:setOnAnimationEnd](#animsetonanimationend)          |
 | anim:setFrame             | [anim:setCurrentFrame](#animsetcurrentframe)              |
 | grid:__call               | [grid:getFrames](#gridgetframes)                          |
 

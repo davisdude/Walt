@@ -307,6 +307,7 @@ return {
             quadImage = quadImage, 
 
             onAnimationChange = function() end, 
+            onAnimationEnd = function() end, 
             onLoop = function() end, 
 
             currentFrame = 1, 
@@ -335,6 +336,7 @@ return {
                                     self.paused = true
                                 else
                                     self.active = false
+																		self:onAnimationEnd()
                                 end
                                 self.currentFrame = #self.frames
                             end
@@ -374,6 +376,11 @@ return {
                 self.onAnimationChange = func
             end, 
             getOnAnimationChange = function( self ) return self.onAnimationChange end, 
+						setOnAnimationEnd = function( self, func )
+                err( 'setOnAnimationEnd: expected argument two to be a function, got %type%.', func, 'function' )
+                self.onAnimationEnd = func
+            end, 
+            getOnAnimationEnd = function( self ) return self.onAnimationEnd end, 						
             setPaused = function( self, paused ) 
                 err( 'setPaused: expected argument two be a boolean, got %type%.', paused, 'boolean' )
                 self.paused = paused 

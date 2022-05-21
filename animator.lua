@@ -405,7 +405,7 @@ return {
 			getActive = function( self ) return self.active end,
 			toggleActive = function( self ) self.active = not self.active end,
 			setLooping = function( self, looping )
-				looping = looping or true
+				looping = ( looping == nil ) and true or looping
 				err( 'setLooping: expected argument two to be a boolean, got %type%.', looping, 'boolean' )
 				self.looping = looping
 			end,
